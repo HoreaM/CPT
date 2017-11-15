@@ -1,5 +1,3 @@
-"""Simple price monitor built with Scrapy and Scrapy Cloud
-"""
 import argparse
 import os
 from datetime import datetime, timedelta

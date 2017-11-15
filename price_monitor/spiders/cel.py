@@ -17,7 +17,7 @@ class CelSpider(BaseSpider):
             )
 
             items.append(item)
-        item = max(items, key=lambda x: x['price'])
+        item = min(items, key=lambda x: x.get('price'))
         #yield items
         yield item
 '''

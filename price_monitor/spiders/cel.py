@@ -10,7 +10,7 @@ class CelSpider(BaseSpider):
             prod = response.meta.get('item', {})
             prod['title'] = product.css(".product_name span::text").extract_first("").strip()
             prod['link'] = product.css(".product_name::attr(href)").extract_first("").strip()
-            prod['price'] = float(product.css('link+ b ::text').extract_first() or 0)
+            prod['price'] = float(product.css('link+ b ::text').extract_first() or 99999)
             items.append(prod.copy())
         item = min(items, key=lambda x: x.get('price'))
         yield item

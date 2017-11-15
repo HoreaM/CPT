@@ -8,7 +8,8 @@ class CelSpider(BaseSpider):
     def parse(self, response):
         #items = []
         for product in response.css('div.productListing-nume'):
-            item = PriceMonitorItem()
+            item = response.meta.get('item', {})
+            #item = PriceMonitorItem()
             item['title'] = product.css(".product_name span::text").extract_first("").strip()
             item['link'] = product.css(".product_name::attr(href)").extract_first("").strip()
             item['price'] = product.css('.pret_n b ::text').extract_first()

@@ -12,7 +12,10 @@ class CelSpider(BaseSpider):
             #item = PriceMonitorItem()
             item['title'] = product.css(".product_name span::text").extract_first("").strip()
             item['link'] = product.css(".product_name::attr(href)").extract_first("").strip()
-            item['price'] = product.css('.pret_n b ::text').extract_first()
+            item['price'] = float(
+                product.css('link+ b ::text').extract_first() or 0
+            )
+
             items.append(item)
         item = min(items, key=lambda x: x['price'])
         #yield items

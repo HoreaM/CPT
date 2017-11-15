@@ -18,7 +18,8 @@ def open_spider(self, spider):
         self.data_stores[product_name] = project.collections.new_store(product_name)
 
 
-def process_item(self, item, spider):
+def process_item(self, items, spider):
+    item = min(items, key=lambda x: x['price'])
     key = "{}-{}-{}".format(
         reversed_timestamp(), item.get('product_name'), item.get('retailer')
     )

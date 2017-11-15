@@ -17,9 +17,9 @@ class CelSpider(BaseSpider):
             )
 
             items.append(item)
-        product = min(items, key=lambda x: x.get('price'))
+        low_item = min(items, key=lambda x: x.get('price'))
         #yield items
-        yield product
+        yield low_item
 '''
 import scrapy
 

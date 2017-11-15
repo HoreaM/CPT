@@ -4,4 +4,3 @@ boto
 extruct
 w3lib
 jinja2
-pypiwin32

@@ -14,8 +14,9 @@ class CelSpider(BaseSpider):
             item['link'] = product.css(".product_name::attr(href)").extract_first("").strip()
             item['price'] = product.css('.pret_n b ::text').extract_first()
             items.append(item)
-        yield items
-        #yield item
+        item = min(items, key=lambda x: x['price'])
+        #yield items
+        yield item
 '''
 import scrapy
 

@@ -17,7 +17,9 @@ class CelSpider(BaseSpider):
             )
 
             items.append(item)
-        low_item = min(items, key=lambda x: x.get('price'))
+        print(items)
+        #low_item = min(items, key=lambda x: x.get('price'))
+        low_item = min(prod['price'] for prod in items)
         print(low_item)
         #yield items
         yield low_item

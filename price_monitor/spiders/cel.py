@@ -7,19 +7,15 @@ class CelSpider(BaseSpider):
 
     def parse(self, response):
         items = []
+        item = response.meta.get('item', {})
         for product in response.css('div.productListing-nume'):
-            item = response.meta.get('item', {})
             #item = PriceMonitorItem()
             item['title'] = product.css(".product_name span::text").extract_first("").strip()
             item['link'] = product.css(".product_name::attr(href)").extract_first("").strip()
-            item['price'] = float(
-                product.css('link+ b ::text').extract_first() or 0
-            )
-
+            item['price'] = float(product.css('link+ b ::text').extract_first() or 0)
             items.append(item)
         print(items)
-        #low_item = min(items, key=lambda x: x.get('price'))
-        low_item = min(prod['price'] for prod in items)
+        low_item = min(items, key=lambda x: x.get('price'))
         print(low_item)
         #yield items
         yield low_item
